@@ -301,7 +301,7 @@ for case in response.json()["cases"]:
 - **Documentation**: [Full API Documentation](http://localhost:8000/docs)
 - **Issues**: [GitHub Issues](https://github.com/sammadaan/BrazilLawyer/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/sammadaan/BrazilLawyer/discussions)
-- **Email**: sammadaan@example.com
+- **Email**: aseemmadaan9@gmail.com
 
 ## 📜 License
 
