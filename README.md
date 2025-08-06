@@ -1,4 +1,4 @@
-# 🇧🇷 BrazilLawyer - AI-Powered Brazilian Legal Research Platform
+# 🇧🇷 mais petiçoes - AI-Powered Brazilian Legal Research Platform
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com)
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
