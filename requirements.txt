@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+spacy
+requests
+python-dotenv
+scrapy
+playwright
+google-cloud-bigquery
+google-cloud-firestore
