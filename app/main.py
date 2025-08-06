@@ -1,24 +1,20 @@
+"""Main FastAPI application with all routers and DB init."""
 from fastapi import FastAPI
-from app import nlp, llm, grammar, schemas
+from app.database import init_db
+from config.logging import setup_logging
 
-app = FastAPI()
+from app.routers import cases, search, documents, reports, admin
 
-@app.post("/grammar-correct", response_model=schemas.TextResponse)
-def grammar_correction(req: schemas.TextRequest):
-    corrected = grammar.correct_text(req.text)
-    return schemas.TextResponse(text=corrected)
+setup_logging()
 
-@app.post("/ai-rewrite", response_model=schemas.TextResponse)
-def ai_rewrite(req: schemas.TextRequest):
-    result = llm.rewrite_text(req.text)
-    return schemas.TextResponse(text=result)
+app = FastAPI(title="BrazilLawyer AI Backend")
 
-@app.post("/strengthen-argument", response_model=schemas.TextResponse)
-def strengthen_argument(req: schemas.TextRequest):
-    result = llm.strengthen_argument(req.text)
-    return schemas.TextResponse(text=result)
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
 
-@app.post("/nlp/analyze", response_model=schemas.NLPResponse)
-def nlp_analyze(req: schemas.TextRequest):
-    analysis = nlp.analyze_text(req.text)
-    return schemas.NLPResponse(**analysis)
+app.include_router(cases.router)
+app.include_router(search.router)
+app.include_router(documents.router)
+app.include_router(reports.router)
+app.include_router(admin.router)

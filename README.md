@@ -1,37 +1,33 @@
-# 🇧🇷 BrazilLawyer – AI Legal Assistant for Brazilian Law
+# AI Backend MVP
 
-BrazilLawyer is an AI-powered legal assistant designed specifically for the Brazilian legal system. It helps legal professionals enhance the clarity, tone, and effectiveness of their legal documents in Portuguese while suggesting relevant case law and improving argument structure.
+This backend uses FastAPI and integrates with:
+- Google Gemini API (for LLM)
+- spaCy (for NLP)
+- LanguageTool (for grammar correction)
 
-## ✨ Features (MVP)
+## Setup
 
-- ✅ **Grammar & Cohesion Correction**  
-  Automatically corrects grammar, syntax, and cohesion issues in legal texts.
+1. Copy `.env.example` to `.env` and fill in your API keys.
+2. Build and run with Docker Compose:
+   ```
+   docker-compose up --build
+   ```
+3. Access docs at `http://localhost:8000/docs`
 
-- ✅ **Legal Tone Adjustment**  
-  Refines text to follow formal, juridical Portuguese suitable for court filings.
+## Endpoints
 
-- ✅ **Case Law Suggestions (Prototype)**  
-  Uses scraped Brazilian legal databases (e.g., JusBrasil, DJE) to suggest relevant precedents.
+- `/grammar-correct`: Grammar correction (LanguageTool)
+- `/ai-rewrite`: Rewrite legal text (Gemini)
+- `/strengthen-argument`: Enhance legal arguments (Gemini)
+- `/nlp/analyze`: Extract entities & lemmas (spaCy)
 
-- 🚧 **Argument Enhancement (Planned)**  
-  Strengthens key points in legal defenses and claims using LLM-powered logic.
+## Environment Variables
+
+- `GEMINI_API_KEY`: Required. Get from Google AI Studio.
+- `LANGUAGETOOL_URL`: Default provided.
+- `SPACY_MODEL`: Default `pt_core_news_md`.
 
 ---
 
-## 📦 Tech Stack
-
-- **Python** (3.10+)
-- **Google Gemini API** (text generation)
-- **Gradio** (Web interface)
-- **BeautifulSoup / Selenium** (Web scraping)
-- **LangChain / PromptLayer** (Prompt management)
-- **PostgreSQL** (Planned for database of weekly legal data)
-
----
-
-## 🚀 Usage
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/sammadaan/BrazilLawyer.git
-cd BrazilLawyer
+**Security Note:**  
+Never commit `.env` files with real secrets!
