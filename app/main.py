@@ -1,20 +1,83 @@
-"""Main FastAPI application with all routers and DB init."""
 from fastapi import FastAPI
-from app.database import init_db
-from config.logging import setup_logging
+from fastapi.middleware.cors import CORSMiddleware
+import os
 
-from app.routers import cases, search, documents, reports, admin
+# Create FastAPI app
+app = FastAPI(
+    title="Mais Petições AI",
+    description="AI-powered legal assistant for Brazilian lawyers",
+    version="1.0.0"
+)
 
-setup_logging()
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Configure this properly for production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-app = FastAPI(title="BrazilLawyer AI Backend")
+# Basic health check
+@app.get("/")
+async def root():
+    return {"message": "Mais Petições AI - Legal Assistant API", "status": "running"}
 
-@app.on_event("startup")
-async def startup_event():
-    await init_db()
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
 
-app.include_router(cases.router)
-app.include_router(search.router)
-app.include_router(documents.router)
-app.include_router(reports.router)
-app.include_router(admin.router)
+# AI Endpoints
+@app.post("/ai-rewrite")
+async def ai_rewrite(data: dict):
+    # Your AI rewriting logic here
+    text = data.get("text", "")
+    context = data.get("context", "")
+    
+    # Placeholder response - replace with actual AI logic
+    return {
+        "original_text": text,
+        "rewritten_text": f"Rewritten: {text}",
+        "context": context
+    }
+
+@app.post("/grammar-correct")
+async def grammar_correct(data: dict):
+    # Your grammar correction logic here
+    text = data.get("text", "")
+    
+    # Placeholder response - replace with actual grammar correction
+    return {
+        "original_text": text,
+        "corrected_text": f"Corrected: {text}",
+        "corrections": []
+    }
+
+@app.post("/api/v1/cases/search")
+async def search_cases(data: dict):
+    # Your case search logic here
+    query = data.get("query", "")
+    court = data.get("court", "")
+    
+    # Placeholder response - replace with actual search logic
+    return {
+        "query": query,
+        "court": court,
+        "cases": [],
+        "total": 0
+    }
+
+@app.post("/api/v1/documents/analyze")
+async def analyze_document(data: dict):
+    # Your document analysis logic here
+    
+    # Placeholder response - replace with actual analysis logic
+    return {
+        "analysis": "Document analysis completed",
+        "summary": "This is a placeholder summary",
+        "risk_assessment": "Low risk"
+    }
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
