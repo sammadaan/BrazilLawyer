@@ -1,9 +1,50 @@
-fastapi
-uvicorn[standard]
-spacy
-requests
-python-dotenv
-scrapy
-playwright
-google-cloud-bigquery
-google-cloud-firestore
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+alembic==1.13.1
+
+# AI and NLP
+google-generativeai==0.3.2
+spacy==3.7.2
+transformers==4.35.2
+
+# Web Scraping
+httpx==0.25.2
+beautifulsoup4==4.12.2
+requests==2.31.0
+
+# Task Queue
+celery==5.3.4
+redis==5.0.1
+
+# Utilities
+python-dotenv==1.0.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Portuguese Language Model for spaCy
+# Run: python -m spacy download pt_core_news_sm
+
+# PDF Processing
+PyPDF2==3.0.1
+python-docx==1.1.0
+
+# Date and Time
+python-dateutil==2.8.2
+
+# Logging
+loguru==0.7.2
+
+# Testing (optional)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+
+# CORS
+python-cors==1.0.1
